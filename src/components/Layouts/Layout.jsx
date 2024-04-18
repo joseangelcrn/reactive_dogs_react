@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../../redux/userSlice";
+import Login from "../Login";
 
 const Layout = () => {
   const user = useSelector((store) => store.user.data);
@@ -18,8 +18,7 @@ const Layout = () => {
   }));
 
   useEffect(() => {
-    dispatch(login({name:'Jose'}))
-    
+    // dispatch(login({name:'Jose'}))
   }, []);
 
   return (
@@ -41,7 +40,8 @@ const Layout = () => {
           {/* No Auth */}
           <Grid container columns={12} justifyContent={"center"}>
             <Grid item xs={6}>
-              <Item>Login</Item>
+              {/* <Item>Login</Item> */}
+              <Login/>
             </Grid>
           </Grid>
         </Fragment>
