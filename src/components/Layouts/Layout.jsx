@@ -4,6 +4,8 @@ import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
 import Login from "../Login";
+import Menu from "../Menu";
+import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   const user = useSelector((store) => store.user.data);
@@ -26,12 +28,13 @@ const Layout = () => {
       {user ? (
         <Fragment>
           {/* Auth */}
-          <Grid container spacing={2} columns={12}>
-            <Grid item xs={3}>
-              <Item>Menu</Item>
+          <Grid container spacing={1} columns={12} >
+            <Grid item xs={12}>
+              <Menu/>
             </Grid>
-            <Grid item xs={9} justifyItems={"flex-end"}>
+            <Grid sx={{marginTop:1}} item xs={12}>
               <Item>Contenido</Item>
+              <Outlet/>
             </Grid>
           </Grid>
         </Fragment>
