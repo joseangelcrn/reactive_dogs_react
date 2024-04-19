@@ -40,7 +40,6 @@ const Layout = () => {
           {/* No Auth */}
           <Grid container columns={12} justifyContent={"center"}>
             <Grid item xs={6}>
-              {/* <Item>Login</Item> */}
               <Login/>
             </Grid>
           </Grid>
