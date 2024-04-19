@@ -33,7 +33,8 @@ const Layout = () => {
               <Menu/>
             </Grid>
             <Grid sx={{marginTop:1}} item xs={12}>
-              <Item>Contenido</Item>
+              {/* <Item>Contenido</Item> */}
+              {/* <Item><Outlet/></Item> */}
               <Outlet/>
             </Grid>
           </Grid>

@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,11 +15,12 @@ import { Pets } from "@mui/icons-material";
 import { Link, NavLink, redirect, useNavigate } from "react-router-dom";
 import { logout } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
 function _Menu() {
   // const pages = ['Products', 'Pricing', 'Blog'];
   const pages = [
-    { title: "My adopted dogs", url: "/" },
+    { title: "My adopted dogs", url: "/home" },
     { title: "Adopt new dog", url: "/adopt_dog" },
     { title: "Infinite Scroll", url: "/infinite_scroll" },
   ];
@@ -29,9 +29,9 @@ function _Menu() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -52,6 +52,13 @@ function _Menu() {
     setAnchorElUser(null);
     console.log("close user menu");
   };
+
+  
+  useEffect(() => {
+    if (location.pathname === "/") {
+      navigate("/home");
+    }
+  }, []);
 
   return (
     <AppBar position="static">
@@ -172,9 +179,13 @@ function _Menu() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-                <MenuItem onClick={()=>{dispatch(logout())}}>
-                  <Typography textAlign="center" >{'Log Out'}</Typography>
-                </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  dispatch(logout());
+                }}
+              >
+                <Typography textAlign="center">{"Log Out"}</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
