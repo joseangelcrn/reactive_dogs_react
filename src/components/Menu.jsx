@@ -64,7 +64,7 @@ function _Menu() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* normal view */}
+          {/* mobile view */}
           <Pets sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
           <Typography
             variant="h6"
@@ -123,7 +123,7 @@ function _Menu() {
               ))}
             </Menu>
           </Box>
-          {/* mobiles view */}
+          {/* normal view */}
           <Pets sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="h5"
@@ -152,7 +152,10 @@ function _Menu() {
                 }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page.title}
+                <Typography  fontWeight={ location.pathname === page.url ? 'bold':''} >
+                {page.title} 
+                  
+                </Typography>
               </Button>
             ))}
           </Box>
