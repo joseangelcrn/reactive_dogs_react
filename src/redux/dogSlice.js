@@ -55,10 +55,13 @@ export const dogsSlice = createSlice({
 
     },
 
-    generateFakeDogs: (state) => {
-      let fakeDgos = [];
+    generateFakeDogs: (state,payload) => {
+      const amount = payload;
 
-      for (let i = 1; i <= 1; i++) {
+      let fakeDgos = [];
+      
+
+      for (let i = 1; i <= amount; i++) {
         let url = "sasha.png";
         if (i % 2 == 0) {
           url = "marcos.png";
