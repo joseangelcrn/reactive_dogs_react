@@ -43,7 +43,8 @@ function _Menu() {
   const handleCloseNavMenu = (navItem = null) => {
     setAnchorElNav(null);
     console.log("close nav menu");
-    if (navItem) {
+    if (typeof navItem.url !== 'undefined') {
+      console.log('navitem url = '+navItem.url);
       navigate(navItem.url);
     }
   };
