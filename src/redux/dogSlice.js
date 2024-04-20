@@ -4,28 +4,31 @@ import { v4 as uuidv4 } from "uuid";
 export const dogsSlice = createSlice({
   name: "dog",
   initialState: {
-    data: [
-      {
-        id: uuidv4(),
-        name: "Sasha",
-        description:
-          "Such a clever dog, now a day I wonder how you understood everything we told you. I miss you Sashilla.",
-        url: "sasha.png",
-      },
-      {
-        id: uuidv4(),
-        name: "Marcos",
-        description:
-          "A very lazy labrador. I am sure your objective in this world was the human food. I miss you Marquillo.",
-        url: "marcos.png",
-      },
-    ],
+    // data: [
+    //   {
+    //     id: uuidv4(),
+    //     name: "Sasha",
+    //     description:
+    //       "Such a clever dog, now a day I wonder how you understood everything we told you. I miss you Sashilla.",
+    //     url: "sasha.png",
+    //   },
+    //   {
+    //     id: uuidv4(),
+    //     name: "Marcos",
+    //     description:
+    //       "A very lazy labrador. I am sure your objective in this world was the human food. I miss you Marquillo.",
+    //     url: "marcos.png",
+    //   },
+    // ],
+    data:JSON.parse(localStorage.getItem('dogs')) ?? []
   },
   reducers: {
     create: (state, action) => {
       let dog = action.payload;
       dog.id = uuidv4();
       state.data.push(dog);
+      localStorage.setItem('dogs',JSON.stringify(state.data))
+
     },
     remove: (state, action) => {
       let id = action.payload;
@@ -34,23 +37,28 @@ export const dogsSlice = createSlice({
         return dog.id != id;
       });
       state.data = filteredDogs;
+      localStorage.setItem('dogs',JSON.stringify(state.data))
+      
     },
     update: (state, action) => {
-      let { id, updatedDog } = action;
+      let { id, updatedDog } = action.payload;
 
       let clonedData = [...state.data];
-      let filteredDogs = clonedData.map((dog) => {
+      let updatedDogs = clonedData.map((dog) => {
         if (dog.id === id) {
           dog = updatedDog;
         }
+        return dog;
       });
-      state.data = filteredDogs;
+      state.data = updatedDogs;
+      localStorage.setItem('dogs',JSON.stringify(state.data))
+
     },
 
     generateFakeDogs: (state) => {
       let fakeDgos = [];
 
-      for (let i = 1; i <= 15; i++) {
+      for (let i = 1; i <= 1; i++) {
         let url = "sasha.png";
         if (i % 2 == 0) {
           url = "marcos.png";
@@ -64,6 +72,7 @@ export const dogsSlice = createSlice({
       }
 
       state.data = fakeDgos;
+      localStorage.setItem('dogs',JSON.stringify(state.data))
     },
   },
 });
