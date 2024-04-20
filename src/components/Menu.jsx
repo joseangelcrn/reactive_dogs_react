@@ -53,7 +53,6 @@ function _Menu() {
     console.log("close user menu");
   };
 
-  
   useEffect(() => {
     if (location.pathname === "/") {
       navigate("/home");
@@ -118,7 +117,11 @@ function _Menu() {
                     handleCloseNavMenu(page);
                   }}
                 >
-                  <Typography textAlign="center">{page.title}</Typography>
+                  <Typography
+                    fontWeight={location.pathname === page.url ? "bold" : ""}
+                  >
+                    {page.title}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -152,9 +155,10 @@ function _Menu() {
                 }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Typography  fontWeight={ location.pathname === page.url ? 'bold':''} >
-                {page.title} 
-                  
+                <Typography
+                  fontWeight={location.pathname === page.url ? "bold" : ""}
+                >
+                  {page.title}
                 </Typography>
               </Button>
             ))}
