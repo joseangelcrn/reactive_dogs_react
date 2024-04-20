@@ -16,7 +16,7 @@ const router = createBrowserRouter([
                 element:<Home/>
             },
             {
-                path:'/adopt_dog',
+                path:'/adopt_dog/:id?',
                 element:<CrudDog/>
             },
             {
