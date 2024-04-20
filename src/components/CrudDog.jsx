@@ -173,13 +173,13 @@ const CrudDog = () => {
             value={dog.name}
             fullWidth
             onChange={onChangeField}
+            required
           />
           <Textarea
             name="description"
             style={{ marginTop: 30 }}
-            aria-label="minimum height"
             minRows={3}
-            placeholder="Minimum 3 rows"
+            placeholder="Description of your doggy"
             onChange={onChangeField}
             value={dog.description}
           />
@@ -188,6 +188,7 @@ const CrudDog = () => {
             style={{ marginTop: 15 }}
             color="primary"
             type="submit"
+            disabled={dog.name.trim().length == 0}
           >
             {id ? "Update" : "Save"}
           </Button>
