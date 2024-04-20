@@ -117,10 +117,11 @@ const CrudDog = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const dogs = useSelector((store) => store.dog.data);
-  const [dog, setDog] = useState({ name: "", description: "" });
+  const [dog, setDog] = useState({ name: "", description: "", url: "" });
+  const [urlImgApi, setUrlImgApi] = useState(null);
 
   useEffect(() => {
-    console.log('hola mundo');
+    console.log("hola mundo");
     // location.pathname.split('/').pop();
     console.log(id);
     if (id) {
@@ -130,13 +131,29 @@ const CrudDog = () => {
 
       console.log(foundDog);
       setDog(foundDog);
-    } 
+    } else {
+      //Load Random Dog Image
+      const fetchData = async () => {
+        const data = await fetch("https://dog.ceo/api/breeds/image/random");
+        const json = await data.json();
+        console.log("dog response ", json);
+        // setUrlImgApi(json.message)
+        setDog((prevDog)=>(
+          {
+            ...dog,
+            url:json.message
+          }
+        ))
+      };
+      fetchData();
+ 
+    }
 
     console.log("dog", dog);
   }, []);
 
   const submit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (id) {
       console.log("updating..!");
       dispatch(update({ id: id, updatedDog: dog }));
@@ -156,6 +173,12 @@ const CrudDog = () => {
     });
   };
 
+  const fetchUrlDogImage = async () => {
+    let response = await fetch("https://dog.ceo/api/breeds/image/random");
+
+    return response;
+  };
+
   return (
     <Grid
       container
@@ -167,6 +190,16 @@ const CrudDog = () => {
       <Grid item xs={12} sm={5} md={4} lg={5}>
         <h1 align="center">Adopt a dog</h1>
         <form action="" onSubmit={submit}>
+          <img
+            style={{
+              width: "100%",
+              height: "400px",
+              boxShadow:'3px 3px 5px',
+              marginBottom:'10px'
+            }}
+            src={dog.url}
+            alt=""
+          />
           <TextField
             name="name"
             label="Dog name"

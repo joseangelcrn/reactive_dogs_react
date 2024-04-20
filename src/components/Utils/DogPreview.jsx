@@ -29,7 +29,7 @@ const DogPreview = (props) => {
         <CardMedia
           component="img"
           height="350"
-          image={"./" + props.dog.url}
+          image={props.dog.local ? "./" + props.dog.url: props.dog.url}
           alt="Dog Image"
         />
         <CardContent>

@@ -71,6 +71,7 @@ export const dogsSlice = createSlice({
           name: "Dog " + i,
           description: "Fake Dog number " + i,
           url,
+          local:true
         });
       }
 

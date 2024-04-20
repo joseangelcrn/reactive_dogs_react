@@ -14,7 +14,7 @@ const Home = () => {
     // if (dogs.length === 0) {
     //   dispatch(generateFakeDogs())
     // }
-    // dispatch(generateFakeDogs())
+    // dispatch(generateFakeDogs(10))
 
     console.log(dogs);
   }, []);
