@@ -28,16 +28,15 @@ const Layout = () => {
       {user ? (
         <Fragment>
           {/* Auth */}
-          <Grid container spacing={1} columns={12} >
+          <Grid sx={{marginBottom:5}} container spacing={1} columns={12} >
             <Grid item xs={12}>
               <Menu/>
             </Grid>
-            <Grid sx={{marginTop:1}} item xs={12}>
-              {/* <Item>Contenido</Item> */}
-              {/* <Item><Outlet/></Item> */}
-              <Outlet/>
+            <Grid container spacing={1} columns={12} >
             </Grid>
           </Grid>
+          <Outlet/>
+
         </Fragment>
       ) : (
         <Fragment>
