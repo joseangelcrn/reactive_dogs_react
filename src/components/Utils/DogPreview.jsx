@@ -6,14 +6,19 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { remove } from "../../redux/dogSlice";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const DogPreview = (props) => {
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { id } = props.dog;
+
 
   const deleteDog = () => {
     if (confirm("¿Are you sure?")) {
       console.log("remove dog (id = " + props.dog.id + ")");
-      let { id } = props.dog;
       dispatch(remove(id));
     }
   };
@@ -37,7 +42,7 @@ const DogPreview = (props) => {
         </CardContent>
       </CardActionArea>
       <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
-        <Button size="small" color="primary">
+        <Button size="small" color="primary"  onClick={()=>{navigate('/adopt_dog/'+id)}}>
           EDIT
         </Button>
         <Button size="small" color="error" onClick={deleteDog}>
