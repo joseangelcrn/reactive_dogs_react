@@ -55,8 +55,8 @@ export const dogsSlice = createSlice({
 
     },
 
-    generateFakeDogs: (state,payload) => {
-      const amount = payload;
+    generateFakeDogs: (state,action) => {
+      const amount = action.payload;
 
       let fakeDgos = [];
       
