@@ -19,9 +19,6 @@ const Layout = () => {
     color: theme.palette.text.secondary,
   }));
 
-  useEffect(() => {
-    // dispatch(login({name:'Jose'}))
-  }, []);
 
   return (
     <Fragment>
