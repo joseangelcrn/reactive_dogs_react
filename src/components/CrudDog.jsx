@@ -1,5 +1,5 @@
 import { styled } from "@mui/system";
-import { Grid, TextField } from "@mui/material";
+import { Box, Grid, TextField } from "@mui/material";
 import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
 import { Button as BaseButton } from "@mui/base/Button";
 import React, { useEffect, useState } from "react";
@@ -118,18 +118,13 @@ const CrudDog = () => {
   const { id } = useParams();
   const dogs = useSelector((store) => store.dog.data);
   const [dog, setDog] = useState({ name: "", description: "", url: "" });
-  const [urlImgApi, setUrlImgApi] = useState(null);
 
   useEffect(() => {
-    console.log("hola mundo");
-    // location.pathname.split('/').pop();
-    console.log(id);
     if (id) {
       let foundDog = dogs.filter((dog) => {
         return dog.id === id;
       })[0];
 
-      console.log(foundDog);
       setDog(foundDog);
     } else {
       //Load Random Dog Image
@@ -173,12 +168,6 @@ const CrudDog = () => {
     });
   };
 
-  const fetchUrlDogImage = async () => {
-    let response = await fetch("https://dog.ceo/api/breeds/image/random");
-
-    return response;
-  };
-
   return (
     <Grid
       container
@@ -190,16 +179,20 @@ const CrudDog = () => {
       <Grid item xs={12} sm={5} md={4} lg={5}>
         <h1 align="center">Adopt a dog</h1>
         <form action="" onSubmit={submit}>
-          <img
+         <Box sx={{
+          display:'flex',
+          justifyContent:'center'
+         }}>
+         <img
             style={{
-              width: "100%",
-              height: "400px",
               boxShadow:'3px 3px 5px',
-              marginBottom:'10px'
+              marginBottom:'10px',
+              maxWidth:'500px',
             }}
             src={dog.url}
             alt=""
           />
+         </Box>
           <TextField
             name="name"
             label="Dog name"
