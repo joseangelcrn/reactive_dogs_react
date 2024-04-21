@@ -120,20 +120,21 @@ const CrudDog = () => {
   const [dog, setDog] = useState({ name: "", description: "", url: "" });
 
   useEffect(() => {
-    if (id) {
-      let foundDog = dogs.filter((dog) => {
-        return dog.id === id;
-      })[0];
+    return () => {
+      if (id) {
+        let foundDog = dogs.filter((dog) => {
+          return dog.id === id;
+        })[0];
 
-      setDog(foundDog);
-    } else {
-      //Load Random Dog Image
-      callDogApi();
-    }
+        setDog(foundDog);
+      } else {
+        //Load Random Dog Image
+        callDogApi();
+      }
 
-    console.log("dog", dog);
+      console.log("dog", dog);
+    };
   }, []);
-
   const submit = (e) => {
     e.preventDefault();
     if (id) {
