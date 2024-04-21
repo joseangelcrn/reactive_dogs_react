@@ -36,7 +36,6 @@ const Login = () => {
     console.log('length errors = '+errors.length);
     //Login OK
     if (newErrors.length === 0) {
-      console.log("log in OK !");
       dispatch(login({ username, password }));
     }
   };

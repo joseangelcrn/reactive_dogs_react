@@ -6,16 +6,17 @@ import { generateFakeDogs } from "../redux/dogSlice";
 import { NavLink } from "react-router-dom";
 
 const Home = () => {
+  //Generate fake dogs
+  //Set value in 0 if you want to try CRUD by app interface
+  const fakeDogs = 0;
+
   const dogs = useSelector((store) => store.dog.data);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //Generate 15 fake dogs if not exists
-    // if (dogs.length === 0) {
-    //   dispatch(generateFakeDogs())
-    // }
-    // dispatch(generateFakeDogs(10))
-
+    if (fakeDogs > 0) {
+      dispatch(generateFakeDogs(fakeDogs));
+    }
     console.log(dogs);
   }, []);
 
@@ -33,7 +34,7 @@ const Home = () => {
             There is not any adopted dogs.{" "}
             <NavLink to="/adopt_dog">
               <Typography fontWeight={"bold"} variant="p" color="initial">
-                You can adopt  one
+                You can adopt one
               </Typography>
             </NavLink>
           </Typography>

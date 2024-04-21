@@ -120,6 +120,7 @@ const CrudDog = () => {
   const [dog, setDog] = useState({ name: "", description: "", url: "" });
 
   useEffect(() => {
+    console.log('useEffect() !');
     if (id) {
       let foundDog = dogs.filter((dog) => {
         return dog.id === id;
@@ -128,20 +129,7 @@ const CrudDog = () => {
       setDog(foundDog);
     } else {
       //Load Random Dog Image
-      const fetchData = async () => {
-        const data = await fetch("https://dog.ceo/api/breeds/image/random");
-        const json = await data.json();
-        console.log("dog response ", json);
-        // setUrlImgApi(json.message)
-        setDog((prevDog)=>(
-          {
-            ...dog,
-            url:json.message
-          }
-        ))
-      };
-      fetchData();
- 
+      callDogApi();
     }
 
     console.log("dog", dog);
@@ -166,6 +154,18 @@ const CrudDog = () => {
       ...dog,
       [name]: value,
     });
+  };
+
+  const callDogApi = async () => {
+    const data = await fetch("https://dog.ceo/api/breeds/image/random");
+    const json = await data.json();
+    console.log("dog response ", json);
+    setDog((prevDog)=>(
+      {
+        ...dog,
+        url:json.message
+      }
+    ))
   };
 
   return (
