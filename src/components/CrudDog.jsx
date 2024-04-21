@@ -120,7 +120,6 @@ const CrudDog = () => {
   const [dog, setDog] = useState({ name: "", description: "", url: "" });
 
   useEffect(() => {
-    console.log('useEffect() !');
     if (id) {
       let foundDog = dogs.filter((dog) => {
         return dog.id === id;
@@ -160,12 +159,10 @@ const CrudDog = () => {
     const data = await fetch("https://dog.ceo/api/breeds/image/random");
     const json = await data.json();
     console.log("dog response ", json);
-    setDog((prevDog)=>(
-      {
-        ...dog,
-        url:json.message
-      }
-    ))
+    setDog((prevDog) => ({
+      ...dog,
+      url: json.message,
+    }));
   };
 
   return (
@@ -179,20 +176,26 @@ const CrudDog = () => {
       <Grid item xs={12} sm={5} md={4} lg={5}>
         <h1 align="center">Adopt a dog</h1>
         <form action="" onSubmit={submit}>
-         <Box sx={{
-          display:'flex',
-          justifyContent:'center'
-         }}>
-         <img
-            style={{
-              boxShadow:'3px 3px 5px',
-              marginBottom:'10px',
-              maxWidth:'500px',
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
             }}
-            src={dog.url}
-            alt=""
-          />
-         </Box>
+          >
+            {dog.url ? (
+              <img
+                style={{
+                  boxShadow: "3px 3px 5px",
+                  marginBottom: "10px",
+                  maxWidth: "500px",
+                }}
+                src={dog.url}
+                alt=""
+              />
+            ) : (
+              "Loading.."
+            )}
+          </Box>
           <TextField
             name="name"
             label="Dog name"
