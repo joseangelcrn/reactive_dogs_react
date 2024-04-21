@@ -10,6 +10,13 @@
 
 You must to log in to see protected content such as CRUD and api calling.
 
+Credentials:
+
+```
+user : react
+password : react
+```
+
 ### CRUD
 
 With this app you have a simple CRUD where you can **adopt** many dogs 
