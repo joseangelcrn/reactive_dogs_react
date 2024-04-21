@@ -16,7 +16,14 @@ With this app you have a simple CRUD where you can **adopt** many dogs
 
 ### Api communication
 
-WHen you adopt a dog on this aplication you can see a random dog image powered by **https://dog.ceo/dog-api/** , that will be the dog you will adopt
+WHen you adopt a dog on this application you can see a random dog image powered by **https://dog.ceo/dog-api/** , that will be the dog you will adopt
+
+### Redux + Data persistance
+
+This application use `REDUX (Slice)` integrating 2 Slice files : `UserSlice.js` and `DogSlice.js` to manage **login and dog CRUD**.
+In addition, you wont lose your adopted dogs if refresh the page and lose logged user either because application store all data in **localStorage**
+
+-----
 
 ## How it works..
 
