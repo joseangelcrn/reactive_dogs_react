@@ -17,6 +17,7 @@ const Home = () => {
     if (fakeDogs > 0) {
       dispatch(generateFakeDogs(fakeDogs));
     }
+    
     console.log(dogs);
   }, []);
 
