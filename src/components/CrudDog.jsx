@@ -127,12 +127,19 @@ const CrudDog = () => {
         })[0];
 
         setDog(foundDog);
-      } else {
+      } 
+      //new adoption with selected dog image
+      else if(new URLSearchParams(location.search).get('url')){
+        setDog({
+          ...dog,
+          url:new URLSearchParams(location.search).get('url')
+        })
+      }
+      else {
         //Load Random Dog Image
         callDogApi();
       }
 
-      console.log("dog", dog);
     };
   }, []);
   const submit = (e) => {
