@@ -9,12 +9,10 @@ import { remove } from "../../redux/dogSlice";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const DogPreview = (props) => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { id } = props.dog;
-
 
   const deleteDog = () => {
     if (confirm("¿Are you sure?")) {
@@ -29,7 +27,7 @@ const DogPreview = (props) => {
         <CardMedia
           component="img"
           height="350"
-          image={props.dog.local ? "./" + props.dog.url: props.dog.url}
+          image={props.dog.local ? "./" + props.dog.url : props.dog.url}
           alt="Dog Image"
         />
         <CardContent>
@@ -41,14 +39,34 @@ const DogPreview = (props) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
-        <Button size="small" color="primary"  onClick={()=>{navigate('/adopt_dog/'+id)}}>
-          EDIT
+      {!props.readonly && (
+        <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              navigate("/adopt_dog/" + id);
+            }}
+          >
+            EDIT
+          </Button>
+          <Button size="small" color="error" onClick={deleteDog}>
+            DELETE
+          </Button>
+        </CardActions>
+      ) || (
+        <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={() => {
+            navigate("/adopt_dog?url="+props.dog.url);
+          }}
+          fullWidth
+        >
+          ADOPT THIS DOG !
         </Button>
-        <Button size="small" color="error" onClick={deleteDog}>
-          DELETE
-        </Button>
-      </CardActions>
+      </CardActions>      )}
     </Card>
   );
 };
