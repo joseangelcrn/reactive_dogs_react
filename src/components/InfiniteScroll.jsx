@@ -6,7 +6,6 @@ import Grid from "@mui/material/Grid";
 import DogPreview from "./Utils/DogPreview";
 import { Button } from "@mui/material";
 
-
 const InfiniteScroll = () => {
   const [apiDogs, setApiDogs] = useState([]);
 
@@ -35,24 +34,22 @@ const InfiniteScroll = () => {
   }, []);
 
   return (
-    <Grid columns={12} container rowSpacing={4} columnSpacing={3}>
-      <Grid container rowSpacing={4} columnSpacing={3}>
-        {apiDogs.map((item, index) => (
-          <Grid key={index} item xs={3}>
-            <DogPreview dog={item} readonly={true}  />
-          </Grid>
-        ))}
-        <Grid item xs={12}>
-          <Button
-            onClick={() => {
-              loadDogsFromApi(10);
-            }}
-            fullWidth
-            variant="contained"
-          >
-            Load More !
-          </Button>
+    <Grid container rowSpacing={4} >
+      {apiDogs.map((item, index) => (
+        <Grid key={index} item xs={3} sm={6} md={4} lg={3} sx={{ display:'flex',justifyContent:'center'}}>
+          <DogPreview dog={item} readonly={true} />
         </Grid>
+      ))}
+      <Grid item xs={12}>
+        <Button
+          onClick={() => {
+            loadDogsFromApi(10);
+          }}
+          fullWidth
+          variant="contained"
+        >
+          Load More !
+        </Button>
       </Grid>
     </Grid>
   );

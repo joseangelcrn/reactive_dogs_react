@@ -25,7 +25,7 @@ const Home = () => {
     <Grid container columns={12} rowSpacing={6}>
       {dogs.length > 0 ? (
         dogs.map((dog) => (
-          <Grid key={dog.id} item xs={12} sm={6} md={4} lg={3}>
+          <Grid key={dog.id} item xs={12} sm={6} md={4} lg={3} sx={{ display:'flex',justifyContent:'center'}}>
             <DogPreview dog={dog} />
           </Grid>
         ))

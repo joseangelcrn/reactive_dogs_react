@@ -22,13 +22,14 @@ const DogPreview = (props) => {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 345 }}>
       <CardActionArea>
         <CardMedia
           component="img"
           height="350"
           image={props.dog.local ? "./" + props.dog.url : props.dog.url}
           alt="Dog Image"
+          width='100%'
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
