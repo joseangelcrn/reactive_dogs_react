@@ -28,7 +28,7 @@ const DogPreview = (props) => {
           component="img"
           height="350"
           image={props.dog.local ? "./" + props.dog.url : props.dog.url}
-          alt="Dog Image"
+          alt="Can not load image from DOG API, check your network"
           width='100%'
         />
         <CardContent>
