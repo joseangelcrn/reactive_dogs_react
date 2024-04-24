@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { create, update } from "../redux/dogSlice";
+import dogAPI from "../services/DogAPI";
 
 const Textarea = styled(BaseTextareaAutosize)(
   ({ theme }) => `
@@ -164,12 +165,10 @@ const CrudDog = () => {
   };
 
   const callDogApi = async () => {
-    const data = await fetch("https://dog.ceo/api/breeds/image/random");
-    const json = await data.json();
-    console.log("dog response ", json);
+    let url = await dogAPI.loadImages(1);
     setDog((prevDog) => ({
       ...dog,
-      url: json.message,
+      url,
     }));
   };
 
