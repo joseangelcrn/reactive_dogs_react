@@ -38,8 +38,8 @@ const Layout = () => {
       ) : (
         <Fragment>
           {/* No Auth */}
-          <Grid container columns={12} justifyContent={"center"}>
-            <Grid item xs={6}>
+          <Grid container columns={12} sx={{display:'flex',justifyContent:'center'}}>
+            <Grid item xs={8} xl={6}>
               <Login/>
             </Grid>
           </Grid>
